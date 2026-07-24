@@ -1,0 +1,7 @@
+To compute representative noise pixel values to condition model training on observations, we compute noise pixel values in bins of flux (magnitude), since noise is flux dependent. These noise levels help us determine whether simulated pixel photometry is below detection limits, and how to handle those pixels.
+
+We perform this procedure per filter, so we need 1-sigma detection limits per filter.
+
+To compute flux-dependent noise, we create 20 uniform bins over the full magnitude range of each filter. Since the last few bins for very bright fluxes are usually sparse, we truncate the contents of the last 5 bins into the 15th bin to statistically model the noise of that population.
+
+Take the mean and standard deviation of the magnitude error in each bin, and record this for implementation into forward-modeling and training. 
