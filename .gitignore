@@ -3,3 +3,7 @@ outputs/
 *.fits
 *.png
 *.pdf
+.DS_Store
+__pycache__/
+*.npy
+*.dbatlas

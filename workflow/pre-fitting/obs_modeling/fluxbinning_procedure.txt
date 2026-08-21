@@ -5,3 +5,11 @@ We perform this procedure per filter, so we need 1-sigma detection limits per fi
 To compute flux-dependent noise, we create 20 uniform bins over the full magnitude range of each filter. Since the last few bins for very bright fluxes are usually sparse, we truncate the contents of the last 5 bins into the 15th bin to statistically model the noise of that population.
 
 Take the mean and standard deviation of the magnitude error in each bin, and record this for implementation into forward-modeling and training. 
+
+Update 8/17/26:
+The flux binning is already done as part of updated sbipix source code, so these scripts now only produce magnitude and magnitude error arrays used in that function.
+Also produces 1-sigma detection limits per filter.
+
+Magnitude and error compilations in flux_binning.py 
+Flux binning in another script
+...will rename these accordingly this weekend
