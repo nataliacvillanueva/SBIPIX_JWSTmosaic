@@ -3,6 +3,8 @@ outputs/
 *.fits
 *.png
 *.pdf
+*.h5
+*.pkl
 .DS_Store
 __pycache__/
 *.npy

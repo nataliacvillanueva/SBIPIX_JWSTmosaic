@@ -92,18 +92,19 @@ def compute_1sig_perpixel(sig5table, field):
     # save the 1-sigma mJy depth per pixel as a numpy array for use in SBIPIX model training and forward-modeling
     response_fname = input(f"\nSaving 1-sigma mJy depth per pixel as background_noise_{field}_{len(sig5_tab)}filters.npy). Change name? ").strip()
     if response_fname=='y':
-        np.save(f'{response_fname}', sig5_tab['perpixel_mJy_1sig'])
-        fname = response_fname
+        newname = input("Enter new filename (include .npy extension): ").strip()
+        np.save(f'{newname}', sig5_tab['perpixel_mJy_1sig'])
+        fname = newname
     elif response_fname=='n':
         np.save(f'background_noise_{field}_{len(sig5_tab)}filters.npy', sig5_tab['perpixel_mJy_1sig'])
         fname = f'background_noise_{field}_{len(sig5_tab)}filters.npy'
 
     return fname, sig5_tab
 
-fname, sig5_tab = compute_1sig_perpixel(f'/Volumes/dataSSD/{field}/Results/{field.lower()}_5sig-depths_v0.95.txt', field)    
+fname, sig5_tab = compute_1sig_perpixel(f'/Volumes/dataSSD/{field}/Results/{field.lower()}_5sig-depths_v0.95_PSFcorr.txt', field)    
 print(f"1-sigma mJy depth per pixel saved as {fname}")
 
-print('Constructing magnitude bins for ', field)
+#print('Constructing magnitude bins for ', field)
 def compile_magnitudes(field, sig5_tab):
 
     '''
@@ -222,9 +223,9 @@ def compile_magnitudes(field, sig5_tab):
     print(f"Magnitude errors saved as mags_err_{field}_{len(sig5_tab)}filters.npy")
 
     return mags, mags_err
-mags, mags_err = compile_magnitudes(field, sig5_tab)
+#mags, mags_err = compile_magnitudes(field, sig5_tab)
 
-print('Plotting magnitude distributions for ', field)
+# print('Plotting magnitude distributions for ', field)
 def plot_magnitude_distributions(mags, mags_err, sig5_tab):
     '''
         input: magnitudes and magnitude errors for each filter and pixel, 5sigma table that has selected filters
@@ -245,4 +246,4 @@ def plot_magnitude_distributions(mags, mags_err, sig5_tab):
         plt.title(f'Magnitude Distribution for {f}')
         plt.savefig(f'magnitude_distribution_{f}.png')
         plt.close()
-plot_magnitude_distributions(mags, mags_err, sig5_tab)
+# plot_magnitude_distributions(mags, mags_err, sig5_tab)
